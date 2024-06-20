@@ -63,11 +63,13 @@ namespace StatePattern.Enemy
                 case EnemyType.Hitman:
                     enemy = new HiitManController(enemyScriptableObject);
                     break;
+                case EnemyType.Robot:
+                    enemy = new CloneController(enemyScriptableObject);
+                    break;
                 default:
                     enemy = new EnemyController(enemyScriptableObject);
                     break;
             }
-
             return enemy;
         }
 
@@ -92,5 +94,9 @@ namespace StatePattern.Enemy
         }
 
         private bool PlayerWon() => activeEnemies.Count == 0;
+        public void AddEnemy(EnemyController clone)
+        {
+            activeEnemies.Add(clone);
+        }
     }
 }
